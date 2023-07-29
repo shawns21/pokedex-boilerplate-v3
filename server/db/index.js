@@ -1,11 +1,45 @@
-const { db } = require("./db");
+const { db, Sequelize } = require("./db");
 
-// require each of your models
+const Pokemon = db.define("pokemon", {
+    name: {
+        type: Sequelize.STRING,
+    },
+    type: {
+        type: Sequelize.STRING,
+    },
+    trainerlist: {
+        type: Sequelize.STRING,
+    },
+    date: {
+        type: Sequelize.DATE,
+    },
+    imageUrl: {
+        type: Sequelize.STRING,
+        defaultValue: 'user@example.com',
+    },
+});
 
-// place your associations here!
+const Trainers = db.define("trainers", {
+    firstName: {
+        type: Sequelize.STRING,
+    },
+    lastName: {
+        type: Sequelize.STRING,
+    },
+    team: {
+        type: Sequelize.STRING,
+    },
+    imageUrl: {
+        type: Sequelize.STRING,
+        defaultValue: 'user@example.com',
+    },
+});
 
-// export your models below
+Pokemon.belongsTo(Trainers);
+Trainers.hasMany(Pokemon);
 
 module.exports = {
   db,
+  Pokemon,
+  Trainers,
 };

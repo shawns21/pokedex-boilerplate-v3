@@ -1838,7 +1838,8 @@ const Main = () => {
       const {
         data
       } = await axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/pokemon");
-      setPokemon(data);
+      console.log(data);
+      setPokemons(data);
     }
     fetchPokemon();
   }, []);

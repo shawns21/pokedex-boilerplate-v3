@@ -8,7 +8,8 @@ const Main = () => {
   useEffect(() => {
     async function fetchPokemon() {
       const { data } = await axios.get("/api/pokemon");
-      setPokemon(data);
+      console.log(data);
+      setPokemons(data);
     }
 
     fetchPokemon();

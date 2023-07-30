@@ -65,10 +65,25 @@ const seed = async () => {
 
 
 
-  await ash.addPokemons([pikachu, charizard])
-  await 
+  await ash.addPokemons([pikachu, charizard]);
+  await misty.addPokemon(jigglypuff);
+  await brock.addPokemon(gengar);
 
 
   db.close();
   console.log(`Seeding successful! Pokedex is ready.`);
 };
+
+
+seed().catch((err) => {
+  db.close();
+  console.log(`
+
+    Error seeding:
+
+    ${err.message}
+
+    ${err.stack}
+
+  `);
+});

@@ -21,7 +21,7 @@ const Main = () => {
       <ul>
         {pokemons.map((pokemon) => (
           <li>
-            {pokemon.name} | {pokemon.type}
+            {pokemon.name} | {pokemon.imageUrl}
           </li>
         ))}
       </ul>

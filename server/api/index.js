@@ -27,6 +27,15 @@ router.get("/pokemon/:id", async (req, res, next) => {
     }
 });
 
+router.get("/trainer", async (req, res, next) => {
+    try {
+        const pokemons = await Pokemon.findAll();
+        res.send(pokemons);
+    } catch(err){
+        next(err);
+    }
+});
+
 router.get("/trainer/:id", async (req, res, next) => {
     try {
         const trainer = await Trainers.findOne({
@@ -40,6 +49,67 @@ router.get("/trainer/:id", async (req, res, next) => {
     catch (err) {
         next (err);
     }
+});
+
+router.post("/pokemon", async (req, res) => {
+    const newPokemon = await Pokemon.create({ 
+        name: "Chimchar", 
+        type: "Fire/Fighting", 
+        date: "2023-07-19", 
+        trainerList: null, 
+        imageUrl: "https://archives.bulbagarden.net/media/upload/9/91/0390Chimchar.png"});
+
+    res.json(newPokemon);
+});
+
+router.post("/trainer", async (req, res) => {
+    const newTrainer = await Trainers.create({ 
+        firstName: "Paul",  
+        lastName: "",
+        team: null, 
+        imageUrl: "https://archives.bulbagarden.net/media/upload/0/03/Paul_DP.png"});
+
+    res.json(newTrainer);
+});
+
+app.put("/pokemon/:id", async (req, res) => {
+  const pokemon = await Pokemon.findByPk(req.params.id);
+  if (pokemon) {
+    await pokemon.update({ name: "PARKACHU"});
+    res.send(pokemon);
+  } else {
+    res.status(404).send("Pokemon not found");
+  }
+});
+
+app.put("/trainer/:id", async (req, res) => {
+  const trainer = await Trainers.findByPk(req.params.id);
+  if (trainer) {
+    await trainer.update({ firstName: "Shawn"});
+    res.send(trainer);
+  } else {
+    res.status(404).send("Trainer not found");
+  }
+});
+
+app.delete("/pokemon/:id", async (req, res) => {
+  const pokemon = await Pokemon.findByPk(req.params.id);
+  if (pokemon) {
+    await pokemon.destroy();
+    res.status(204).send();
+  } else {
+    res.status(404).send("Pokemon not found");
+  }
+});
+
+app.delete("/trainer/:id", async (req, res) => {
+  const trainer = await Trainers.findByPk(req.params.id);
+  if (trainer) {
+    await trainer.destroy();
+    res.status(204).send();
+  } else {
+    res.status(404).send("Trainer doesnt exist");
+  }
 });
 
 module.exports = router;

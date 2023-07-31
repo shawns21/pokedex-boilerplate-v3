@@ -57,7 +57,7 @@ router.post("/pokemon", async (req, res) => {
         type: "Fire/Fighting", 
         date: "2023-07-19", 
         trainerList: null, 
-        imageUrl: "https://img.pokemondb.net/artwork/large/chimchar.jpg"});
+        imageUrl: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/390.png"});
 
     res.json(newPokemon);
 });
@@ -67,8 +67,10 @@ router.post("/trainer", async (req, res) => {
         firstName: "Paul",  
         lastName: "",
         team: null, 
-        imageUrl: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/390.png"});
-
+        imageUrl: "https://archives.bulbagarden.net/media/upload/0/03/Paul_DP.png"});
+    
+    await newTrainer.addPokemon(newPokemon);
+      
     res.json(newTrainer);
 });
 

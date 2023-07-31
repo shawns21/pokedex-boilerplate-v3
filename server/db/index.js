@@ -7,9 +7,6 @@ const Pokemon = db.define("pokemon", {
     type: {
         type: Sequelize.STRING,
     },
-    trainerlist: {
-        type: Sequelize.STRING,
-    },
     date: {
         type: Sequelize.DATE,
     },
@@ -26,17 +23,15 @@ const Trainers = db.define("trainers", {
     lastName: {
         type: Sequelize.STRING,
     },
-    team: {
-        type: Sequelize.STRING,
-    },
     imageUrl: {
         type: Sequelize.STRING,
         defaultValue: 'user@example.com',
     },
 });
 
-Pokemon.belongsTo(Trainers);
 Trainers.hasMany(Pokemon);
+Pokemon.belongsTo(Trainers);
+
 
 module.exports = {
   db,

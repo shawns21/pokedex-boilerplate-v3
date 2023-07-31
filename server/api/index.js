@@ -29,8 +29,8 @@ router.get("/pokemon/:id", async (req, res, next) => {
 
 router.get("/trainer", async (req, res, next) => {
     try {
-        const pokemons = await Pokemon.findAll();
-        res.send(pokemons);
+        const trainer = await Trainers.findAll();
+        res.send(trainer);
     } catch(err){
         next(err);
     }
@@ -57,7 +57,7 @@ router.post("/pokemon", async (req, res) => {
         type: "Fire/Fighting", 
         date: "2023-07-19", 
         trainerList: null, 
-        imageUrl: "https://archives.bulbagarden.net/media/upload/9/91/0390Chimchar.png"});
+        imageUrl: "https://img.pokemondb.net/artwork/large/chimchar.jpg"});
 
     res.json(newPokemon);
 });
@@ -67,12 +67,12 @@ router.post("/trainer", async (req, res) => {
         firstName: "Paul",  
         lastName: "",
         team: null, 
-        imageUrl: "https://archives.bulbagarden.net/media/upload/0/03/Paul_DP.png"});
+        imageUrl: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/390.png"});
 
     res.json(newTrainer);
 });
 
-app.put("/pokemon/:id", async (req, res) => {
+router.put("/pokemon/:id", async (req, res) => {
   const pokemon = await Pokemon.findByPk(req.params.id);
   if (pokemon) {
     await pokemon.update({ name: "PARKACHU"});
@@ -82,7 +82,7 @@ app.put("/pokemon/:id", async (req, res) => {
   }
 });
 
-app.put("/trainer/:id", async (req, res) => {
+router.put("/trainer/:id", async (req, res) => {
   const trainer = await Trainers.findByPk(req.params.id);
   if (trainer) {
     await trainer.update({ firstName: "Shawn"});
@@ -92,7 +92,7 @@ app.put("/trainer/:id", async (req, res) => {
   }
 });
 
-app.delete("/pokemon/:id", async (req, res) => {
+router.delete("/pokemon/:id", async (req, res) => {
   const pokemon = await Pokemon.findByPk(req.params.id);
   if (pokemon) {
     await pokemon.destroy();
@@ -102,7 +102,7 @@ app.delete("/pokemon/:id", async (req, res) => {
   }
 });
 
-app.delete("/trainer/:id", async (req, res) => {
+router.delete("/trainer/:id", async (req, res) => {
   const trainer = await Trainers.findByPk(req.params.id);
   if (trainer) {
     await trainer.destroy();

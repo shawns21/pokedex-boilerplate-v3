@@ -29,7 +29,7 @@ const seed = async () => {
     type: "Ghost/Poison",
     trainerlist: null, 
     date: '2023-07-19',
-    imageUrl: "https://www.giantbomb.com/a/uploads/scale_medium/0/6087/2437349-pikachu.png",
+    imageUrl: "https://www.giantbomb.com/a/uploads/scale_small/13/135472/1891841-094gengar.png",
   })
 
   const charizard = await Pokemon.create({

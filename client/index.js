@@ -1,7 +1,12 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import Main from "./Main";
+import {PokemonList, TrainerList} from "./Main";
 
 const root = createRoot(document.getElementById("app"));
 
-root.render(<Main />);
+root.render(
+    <>
+        <PokemonList/>
+        <TrainerList/>
+    </>
+);
